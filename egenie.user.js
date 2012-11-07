@@ -3,12 +3,32 @@
 // @description eBay Personalization Platform
 // @require     http://code.jquery.com/jquery-1.8.2.js
 // @require     http://code.jquery.com/ui/1.9.1/jquery-ui.js
+// @require     http://courses.ischool.berkeley.edu/i290-4/f09/resources/gm_jq_xhr.js
 // @resource    jQueryUICSS http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css
 // @include     http://www.ebay.com/*
 // @include     http://www.amazon.com/*
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
+// @grant       GM_xmlhttpRequest
 // ==/UserScript==
+
+function gup(name) {
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");  
+    var regexS = "[\\?&]"+name+"=([^&#]*)";  
+    var regex = new RegExp( regexS );  
+    var results = regex.exec( window.location.href ); 
+    if( results == null )    
+        return "";  
+    else    
+        return results[1];
+}
+
+// setup logger
+console = unsafeWindow.console || window.console;
+var log = function(){};
+// enable logger only if debugparam is present
+if (console && gup('debug'))
+     log = console.log;
 
 var EGeniePlugin = {
     /**
@@ -58,35 +78,63 @@ var EGeniePlugin = {
         if (!$.eGenie.plugins)
             $.eGenie.plugins = [];
         $.eGenie.plugins.push(this);
+        log("eGenie: Registered " + this.menuTitle + " plugin");
     }
 };
+
+/*
+Permanent Storage sample
+
+  // restore the state
+var state = JSON.parse(localStorage.getItem(‘state’)||’{}’);
+// use the state as you wish
+state.lastTweetId = 987654321;
+state.options = {reloadTime:30,playSound:true};
+// save state
+localStorage.setItem(‘state’, JSON.stringify(state) );
+ */
 
 (function($){
     var plugin = $.extend({}, EGeniePlugin);
     plugin.sites = [/ebay\.com/i, /amazon\.com/i];
-    plugin.menuTitle = "Test plugin";
-    plugin.description = "Some test plugin";
+    plugin.menuTitle = "amazon.com prices";
+    plugin.description = "Fetches Amazon prices for the same product if there is any";
     plugin.init = function() {
         alert(this.menuTitle + " initialized");
     };
     plugin.callback = function() {
-        var requestObject = {
-            itemId: "281015538420"
-        }
-        
-        $.ajax( {
-            type : "GET",
-            dataType: "jsonp",
-            contentType: "application/json",
-            url: "http://d-sjc-00531331.corp.ebay.com:8080/eservices/services/getCompetitor",
-            data: requestObject,
-            cache: true,
-            timeout: 30000,
-            success: function(data) {
-                console.log(data);
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: "http://d-sjc-00531331.corp.ebay.com:8080/eservices/services/getCompetitor?itemId=110973972395",
+            onload: function(response) {
+                var obj = null, msg = "";
+                try {
+                    obj = JSON.parse(response.responseText);
+                } catch (e) {
+                    log("Failed to parse response: " + e.message);
+                    return;
+                }
+                
+                if (obj.priceList) {
+                    if (obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW 
+                            && obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW.length > 0)
+                        msg += "New: " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW[0].price 
+                            + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW[0].date;
+                    if (obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED
+                            && obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED.length > 0)
+                        msg += "; Refurbished: " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED[0].price 
+                            + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED[0].date;
+                    if (obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED
+                            && obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED.length > 0)
+                        msg += "; Used: " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].price 
+                            + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].date;
+                }
+                
+                alert("Amazon prices: " + msg);
             }
         });
     }
+    
     plugin.register();
 })(jQuery);
 
@@ -98,7 +146,7 @@ var EGeniePlugin = {
     plugin.callback = function() {
         $.ajax( {
             type : "GET",
-            dataType: "jsonp",
+            //dataType: "jsonp",
             url: "http://www.ebay.com/eservices/warranties/lookup?f=json&itemIds=121012533230",
             cache: true,
             timeout: 30000,
@@ -163,7 +211,7 @@ var EGeniePlugin = {
                         .html('<span class="ui-icon ui-icon-disk"></span>' + plugins[i].menuTitle)
                         .click($.proxy(plugins[i].callback, plugins[i]));
                 menu.append($('<li/>').append(menuLink));
-                plugins[i].init.call(plugins[i]);
+                //plugins[i].init.call(plugins[i]);
             }
 
             menu.menu();
