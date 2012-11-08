@@ -10,8 +10,9 @@
 // @grant       GM_addStyle
 // @grant       GM_xmlhttpRequest
 
-// @require     http://tinypixelz.com/test/dailydeals/js/default.js
-// @resource    dailyDealsCSS http://tinypixelz.com/test/dailydeals/css/default.css
+// @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/dailydeals/js/default.js
+// @resource    dailyDealsCSS https://raw.github.com/vaustymenko/eGenie/master/plugins/dailydeals/css/default.css
+// @resource 	genieOverlayCSS  https://raw.github.com/vaustymenko/eGenie/master/common/css/genie-overlay.css
 // ==/UserScript==
 
 /**
@@ -124,7 +125,7 @@ localStorage.setItem('state', JSON.stringify(state) );
     plugin.menuTitle = "See amazon.com prices";
     plugin.description = "Fetches Amazon prices for the same product if there is any";
     plugin.init = function() {
-        alert(this.menuTitle + " initialized");
+        //alert(this.menuTitle + " initialized");
     };
     plugin.callback = function() {
         var itemId = getItemIdFromURL(window.location.href);
@@ -155,7 +156,7 @@ localStorage.setItem('state', JSON.stringify(state) );
                             + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].date;
                 }
                 
-                alert("Amazon prices: " + msg);
+                //alert("Amazon prices: " + msg);
             }
         });
     }
@@ -175,7 +176,7 @@ localStorage.setItem('state', JSON.stringify(state) );
     plugin.menuTitle = "See ebay.com prices";
     plugin.description = "Fetches Ebay prices for the same product if there is any";
     plugin.init = function() {
-        alert(this.menuTitle + " initialized");
+        //alert(this.menuTitle + " initialized");
     };
     plugin.callback = function() {
         var asin = getASINFromURL(window.location.href);
@@ -210,7 +211,7 @@ localStorage.setItem('state', JSON.stringify(state) );
                             + " as of " + obj.priceList.FIXED_PRICE_USED[0].date;
                 }
                 
-                alert("eBay prices: " + msg);
+                //alert("eBay prices: " + msg);
             }
         });
     }
@@ -230,7 +231,7 @@ localStorage.setItem('state', JSON.stringify(state) );
     plugin.menuTitle = "See accessories on eBay.com";
     plugin.description = "Fetches Ebay accessories for the same product";
     plugin.init = function() {
-        alert(this.menuTitle + " initialized");
+        //alert(this.menuTitle + " initialized");
     };
     
     function buildAccessoryItems(accessories) {
@@ -313,7 +314,7 @@ localStorage.setItem('state', JSON.stringify(state) );
  */
 (function($){
     var plugin = $.extend({}, EGeniePlugin);
-    plugin.sites = [/ebay\.com\/itm\//i];
+    plugin.sites = [/ebay\.com\/itm\//i,/ebay\.com\/sch\/i\.html/i];
     plugin.menuTitle = "Dailydeals";
     plugin.description = "dealy deals plugin";
     plugin.callback = function() {
@@ -343,7 +344,7 @@ localStorage.setItem('state', JSON.stringify(state) );
     plugin.menuTitle = "See accessories";
     plugin.description = "Fetches Ebay accessories for the item";
     plugin.init = function() {
-        alert(this.menuTitle + " initialized");
+        //alert(this.menuTitle + " initialized");
     };
     
     function buildAccessoryItems(accessories) {
@@ -388,7 +389,7 @@ localStorage.setItem('state', JSON.stringify(state) );
                 for (var i in items)
                     content += items[i];
                 
-                alert(content);
+                //alert(content);
             }
         });
     }
@@ -507,6 +508,12 @@ localStorage.setItem('state', JSON.stringify(state) );
             
             var dailyDealsCSS = GM_getResourceText("dailyDealsCSS");
             GM_addStyle(dailyDealsCSS);
+            
+            var genieOverlayCSS = GM_getResourceText("genieOverlayCSS");
+            GM_addStyle(genieOverlayCSS);
+            
+            
+            
             
 
             this.createMenu(plugins);

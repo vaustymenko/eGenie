@@ -28,7 +28,7 @@
 					   cats.push(matches[0].split("/")[0]);
 					}
 				}
-				
+				log("http://www.ebay.com/eservices/dailyDeals?f=json&siteId=0&categoryIds="+cats.join(","));
 		        GM_xmlhttpRequest({
 		            method: "GET",
 		            url: "http://www.ebay.com/eservices/dailyDeals?f=json&siteId=0&categoryIds="+cats.join(","),
