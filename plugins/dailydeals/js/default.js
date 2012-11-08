@@ -81,3 +81,28 @@
 	};	
 	
 })(jQuery);
+
+/**
+ * Shows ebay.com daily
+ * 
+ * @param {type} $
+ * @returns {undefined}
+ */
+(function($){
+    var plugin = $.extend({}, EGeniePlugin);
+    plugin.sites = [/ebay\.com\/itm\//i,/ebay\.com\/sch\/i\.html/i];
+    plugin.menuTitle = "Dailydeals";
+    plugin.description = "dealy deals plugin";
+    plugin.callback = function() {
+        
+    }
+    plugin.init = function(){
+		$.eGenie.dailydeals({
+			callback: function($data){
+				$(".eGenie-overlay").append($data);
+			}	
+		});
+		//console.log($cntr);
+    }
+    plugin.register();
+})(jQuery);

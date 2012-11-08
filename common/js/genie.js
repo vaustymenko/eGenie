@@ -32,8 +32,6 @@ var log = function(){};
 if (console && gup('debug'))
      log = console.log;
 
-
-
 var EGeniePlugin = {
     /**
      * List of domain patterns in regex format, where the plugin should be run
