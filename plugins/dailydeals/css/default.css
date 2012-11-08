@@ -1,0 +1,60 @@
+.genie-deals{
+	
+    font-family: "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+    width: 157px;
+    margin: 25px auto;
+}
+
+.genie-deal{
+	width: 152px;
+}
+
+.genie-deal > a.genie-deal-image-holder{
+	border: 1px solid #CCCCCC;
+    display: block;
+    height: 152px;
+    overflow: hidden;
+    width: 152px;
+}
+
+.genie-deal > a.genie-deal-image-holder img{
+	display: inline-block;
+	margin-left: 7px;
+    margin-top: 10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 140px;
+ }
+ 
+ .genie-deal > a.genie-deal-link{
+	color: #0654BA;
+    display: block;
+    font-size: 12px;
+    margin-top: 13px;
+    text-decoration: none;
+ }
+ 
+ .genie-deal > h3 {
+	font-size: 12px;
+    font-weight: bold;
+    margin: 5px 0;
+    padding: 0;
+ }
+ 
+ b.genie-deal-msrp{
+ 	text-decoration: line-through;
+ }
+ 
+ .genie-deal > h3 > span{
+ 	text-decoration: none;
+ 	padding-left: 20px;
+ 	font-weight: normal;
+ 	
+ }
+ 
+ .genie-deals hr{
+ 	border-top: medium none #666;
+    height: 0;
+    margin: 11px 0;
+    padding: 0;
+ }

@@ -9,6 +9,9 @@
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_xmlhttpRequest
+
+// @require     http://tinypixelz.com/test/dailydeals/js/default.js
+// @resource    dailyDealsCSS http://tinypixelz.com/test/dailydeals/css/default.css
 // ==/UserScript==
 
 /**
@@ -101,12 +104,12 @@ var EGeniePlugin = {
 Permanent Storage sample
 
   // restore the state
-var state = JSON.parse(localStorage.getItem(�state�)||�{}�);
+var state = JSON.parse(localStorage.getItem('state')||'{}');
 // use the state as you wish
 state.lastTweetId = 987654321;
 state.options = {reloadTime:30,playSound:true};
 // save state
-localStorage.setItem(�state�, JSON.stringify(state) );
+localStorage.setItem('state', JSON.stringify(state) );
  */
 
 /**
@@ -272,7 +275,7 @@ localStorage.setItem(�state�, JSON.stringify(state) );
                 for (var i in items)
                     content += items[i];
                 
-                alert(content);
+                //alert(content);
             }
         });
     }
@@ -299,6 +302,34 @@ localStorage.setItem(�state�, JSON.stringify(state) );
     
     plugin.register();
 })(jQuery);
+
+
+
+/**
+ * Shows ebay.com daily
+ * 
+ * @param {type} $
+ * @returns {undefined}
+ */
+(function($){
+    var plugin = $.extend({}, EGeniePlugin);
+    plugin.sites = [/ebay\.com\/itm\//i];
+    plugin.menuTitle = "Dailydeals";
+    plugin.description = "dealy deals plugin";
+    plugin.callback = function() {
+        
+    }
+    plugin.init = function(){
+		$.eGenie.dailydeals({
+			callback: function($data){
+				$(".eGenie-overlay").append($data);
+			}	
+		});
+		//console.log($cntr);
+    }
+    plugin.register();
+})(jQuery);
+
 
 /**
  * Shows ebay.com accessories for items on ebay.com
@@ -448,11 +479,13 @@ localStorage.setItem(�state�, JSON.stringify(state) );
                         .html('<span class="ui-icon ui-icon-disk"></span>' + plugins[i].menuTitle)
                         .click($.proxy(plugins[i].callback, plugins[i]));
                 menu.append($('<li/>').append(menuLink));
-                //plugins[i].init.call(plugins[i]);
+                plugins[i].init.call(plugins[i]);
             }
 
             log("Rendering main menu");
             menu.menu();
+            
+            var $genieOverlay =  $("<div />",{class: "eGenie-overlay"}).appendTo(window.document.body);
         },
 
         /**
@@ -471,10 +504,16 @@ localStorage.setItem(�state�, JSON.stringify(state) );
             // add jQuery css to head
             var jCSS = GM_getResourceText("jQueryUICSS");
             GM_addStyle(jCSS);
+            
+            var dailyDealsCSS = GM_getResourceText("dailyDealsCSS");
+            GM_addStyle(dailyDealsCSS);
+            
 
             this.createMenu(plugins);
         }
     }
     
-    PluginManager.init();
+    $(document).ready(function(){
+    	PluginManager.init();
+    });
 })(jQuery);

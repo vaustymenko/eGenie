@@ -1,0 +1,11 @@
+.eGenie-overlay{
+	background: #fff;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    min-height: 504px;
+    position: absolute;
+    right: 10px;
+    top: 100px;
+    width: 250px;
+    z-index: 99999;
+}
