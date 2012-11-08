@@ -15,7 +15,7 @@
  * Get URL parameter by name
  * 
  * @param {type} name
- * @returns {Number|String}
+ * @returns {String}
  */
 function gup(name) {
     name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");  
@@ -101,12 +101,12 @@ var EGeniePlugin = {
 Permanent Storage sample
 
   // restore the state
-var state = JSON.parse(localStorage.getItem(‘state’)||’{}’);
+var state = JSON.parse(localStorage.getItem(ï¿½stateï¿½)||ï¿½{}ï¿½);
 // use the state as you wish
 state.lastTweetId = 987654321;
 state.options = {reloadTime:30,playSound:true};
 // save state
-localStorage.setItem(‘state’, JSON.stringify(state) );
+localStorage.setItem(ï¿½stateï¿½, JSON.stringify(state) );
  */
 
 /**
