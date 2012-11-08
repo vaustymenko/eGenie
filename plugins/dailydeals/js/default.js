@@ -28,10 +28,12 @@
 					   cats.push(matches[0].split("/")[0]);
 					}
 				}
-				log("http://www.ebay.com/eservices/dailyDeals?f=json&siteId=0&categoryIds="+cats.join(","));
+				
+				var serviceUrl = "http://www.ebay.com/eservices/dailyDeals?f=json&siteId=0&categoryIds="+cats.join(",");
+				log("dailydeas service:" + serviceUrl);
 		        GM_xmlhttpRequest({
 		            method: "GET",
-		            url: "http://www.ebay.com/eservices/dailyDeals?f=json&siteId=0&categoryIds="+cats.join(","),
+		            url: serviceUrl,
 					onload: this.success,
 					onerror: function(){
 						alert("error");
