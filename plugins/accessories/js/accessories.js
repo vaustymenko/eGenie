@@ -1,3 +1,58 @@
+function buildAccessoryItems(accessories) {
+	var items = [];
+	for(var i=0; i < accessories.length; i++) {
+		var itemValues = [],
+			accessory = accessories[i];
+		
+		itemValues.push({
+			type: "img",
+			value: accessory.image,
+			hasLink: true,
+			linkUrl: accessory.optUrl
+		});
+		
+		itemValues.push({
+			type: "titleLink",
+			value: accessory.optTitle,
+			hasLink: true,
+			linkUrl: accessory.optUrl
+		});
+						
+		item = {
+			values: itemValues,
+			hasHr: true
+		};
+		items.push(item);
+	}
+	
+	return items;
+}
+
+function getAccessories(epid, categoryId) {
+    GM_xmlhttpRequest({
+        method: "GET",
+        url: "http://www.ebay.com/eservices/accessories?epid=" + epid
+            + "categoryId=" + categoryId + ""&siteId=0&fetchSize=25",
+        onload: function(response) {
+            var obj = null, msg = "";
+            try {
+                obj = JSON.parse(response.responseText);
+            } catch (e) {
+                log("Failed to parse response: " + e.message);
+                return;
+            }
+            
+            var $cntr = $("<div class='genie-mystuff' />"),
+            	items = buildAccessoryItems(obj.accessories),
+            	viewBuilder = $.eGenie.viewBuilder();
+			
+			$cntr.append(viewBuilder.buildItemList("Accessories", items));
+			
+			return $cntr;
+        }
+    });
+}
+
 /**
  * Shows ebay.com accessories for items on ebay.com
  * 
@@ -28,8 +83,10 @@
                     return;
                 }
                 
-                if (obj && obj.epid)
-                    getAccessories(obj.epid, obj.category);
+                if (obj && obj.epid) {
+                	var content = getAccessories(obj.epid, obj.category);
+                	$(".eGenie-overlay").html(content);
+                }   
             }
         });
     }
