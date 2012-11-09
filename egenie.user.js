@@ -81,7 +81,6 @@ localStorage.setItem('state', JSON.stringify(state) );
 				
 				
 			$ebayGenieOverlayBox
-				.append($("<h3 />").text("Personal Shopping Assistant Plugins"))
 				.append($ebayGenieOverlayPlugins)
 				.append("<hr />")
 				.append($ebayGenieOverlayContainer);

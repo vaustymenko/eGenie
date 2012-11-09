@@ -48,7 +48,7 @@
 					$html,
 					newTitle;
 					
-				
+				log("dailydeals images:", dailyDeals);
 				var $cntr = $("<div class='genie-deals' />");
 				if(dailyDeals){
 				
@@ -59,7 +59,7 @@
 						$html = 
 						"<div class='genie-deal'>"+
 							"<a href='"+deal.dealUrl+"' class='genie-deal-image-holder'>"+
-								"<img src='"+deal.mediumPictureUrl+"' />"+
+								"<img src='"+deal.largePictureUrl+"' />"+
 							"</a>"+
 							"<a href='"+deal.dealUrl+"' class='genie-deal-link' title='"+deal.title+"'>" + newTitle + "</a>"+
 							"<h3>$"+deal.price+"<span>Free Shipping</span></h3>"+

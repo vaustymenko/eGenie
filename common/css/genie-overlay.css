@@ -60,20 +60,25 @@ html[xmlns] .clearfix {
 }
 
 .genie-item-wrapper > a.genie-item-wrapper-image-holder{
-	border: 1px solid #ccc;
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 9px 9px 9px 9px;
     display: block;
     height: 152px;
     overflow: hidden;
     width: 152px;
+   	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.42);
 }
 
 .genie-item-wrapper > a.genie-item-wrapper-image-holder img{
-	display: inline-block;
-	margin-left: 7px;
+	 display: block;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
+    max-height: 140px;
+    max-width: 140px;
     text-align: center;
     vertical-align: middle;
-    width: 140px;
  }
  
 .genie-item-wrapper > a.genie-item-link{
@@ -143,6 +148,7 @@ html[xmlns] .clearfix {
     right: 0;
     top: 50px;
     z-index: 9999;
+    box-shadow: -4px 11px 7px rgba(215, 215, 215, 0.9);
 }
 
 .ebay-genie-overlay.opened .ebay-genie-button{
@@ -186,13 +192,10 @@ html[xmlns] .clearfix {
 	  background: none repeat scroll 0 0 #999999;
 	    border-top: medium none #999999;
 	    clear: both;
-	    height: 3px;
+	    height: 2px;
 	    margin-top: 22px;
 	    padding: 0;
-	}
-
-
-
+}
 
 .ebay-genie-overlay-plugins{
 	margin: 15px;
