@@ -139,7 +139,7 @@
         		var itemValues = [];
         		itemValues.push({
 					type: "titleLink",
-					value: "Auction (new): " + prices.priceList.AUCTION_NEW[0].price,
+					value: "Auction (new): $" + prices.priceList.AUCTION_NEW[0].price,
 					hasLink: true,
 					linkUrl: prices.eBayURL
 				});
@@ -162,7 +162,7 @@
                 var itemValues = [];
         		itemValues.push({
 					type: "titleLink",
-					value: "Auction (used): " + prices.priceList.AUCTION_USED[0].price,
+					value: "Auction (used): $" + prices.priceList.AUCTION_USED[0].price,
 					hasLink: true,
 					linkUrl: prices.eBayURL
 				});
@@ -184,7 +184,7 @@
                 var itemValues = [];
         		itemValues.push({
 					type: "titleLink",
-					value: "Fixed price (new): " + prices.priceList.FIXED_PRICE_NEW[0].price,
+					value: "Fixed price (new): $" + prices.priceList.FIXED_PRICE_NEW[0].price,
 					hasLink: true,
 					linkUrl: prices.eBayURL
 				});
@@ -206,7 +206,7 @@
                 var itemValues = [];
         		itemValues.push({
 					type: "titleLink",
-					value: "Fixed price (used): " + prices.priceList.FIXED_PRICE_USED[0].price,
+					value: "Fixed price (used): $" + prices.priceList.FIXED_PRICE_USED[0].price,
 					hasLink: true,
 					linkUrl: prices.eBayURL
 				});
