@@ -156,12 +156,13 @@
 					
 					$viPrice.css("text-decoration","line-through");
 					log("total Price:", totalPrice);
-					log("buy Price:", buyPrice);
+					log("vi Price:", viPrice);
 					$('.ebay-genie-vi-price').remove();
 					if(totalPrice > viPrice ){
 						$viPrice.parents(".u-cb").after($("<div class='ebay-genie-vi-price' title='Sell your stuff to get it free' style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE</div>"));
 					}else{
-						buyPrice = "$" + addCommas(parseFloat(viPrice - totalPrice).toFixed(2));
+						buyPrice = "$" + addCommas(parseFloat(viPrice - totalPrice).toFixed(2)).toFixed(2);
+						log("buy price", buyPrice);
 						$viPrice.parents(".u-cb").after($("<div class='ebay-genie-vi-price' title='Sell your stuff to get this price' style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for "+buyPrice+"</div>"));	
 					}
 				}else{
