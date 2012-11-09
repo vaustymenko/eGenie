@@ -154,7 +154,7 @@ html[xmlns] .clearfix {
 	right: 0;
 }
 
-.ebay-genie-overlay .ebay-genie-button{
+.ebay-genie-overlay.opened .ebay-genie-button{
 	background: url("https://raw.github.com/vaustymenko/eGenie/master/common/css/ebay-genie-opened.png") no-repeat scroll 0 0 transparent;
     border: medium none;
     cursor: pointer;
