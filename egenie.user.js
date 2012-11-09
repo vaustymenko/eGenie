@@ -73,7 +73,7 @@ localStorage.setItem('state', JSON.stringify(state) );
         createMenu: function(plugins) {
            
            
-            var $ebayGenieOverlay = $("<div class='ebay-genie-overlay opened' />"),
+            var $ebayGenieOverlay = $("<div class='ebay-genie-overlay' />"),
 				$ebayGenieOverlayMainBtn = $("<button class='ebay-genie-button' />"),
 				$ebayGenieOverlayBox = $("<div class='ebay-genie-overlay-box'/>"),
 				$ebayGenieOverlayPlugins = $("<div class='ebay-genie-overlay-plugins' />"),
