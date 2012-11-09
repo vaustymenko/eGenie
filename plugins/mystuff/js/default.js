@@ -158,10 +158,10 @@
 					log("buy Price:", buyPrice);
 					
 					if(totalPrice > viPrice ){
-						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE</div>"));
+						$viPrice.parents(".u-cb").after($("<div title='Sell your stuff to get it free' style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE</div>"));
 					}else{
 						buyPrice = "$" + addCommas(viPrice - totalPrice);
-						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for "+buyPrice+"</div>"));	
+						$viPrice.parents(".u-cb").after($("<div title='Sell your stuff to get it with your prices' style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for "+buyPrice+"</div>"));	
 					}
 				}
 				$(".ebay-genie-overlay-box-container").html($data);
