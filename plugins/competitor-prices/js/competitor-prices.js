@@ -39,6 +39,9 @@
                             && obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED.length > 0)
                         msg += "; Used: " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].price 
                             + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].date;
+                            
+                    if (obj.amazonURL)
+                    	msg += '  <a href="' + obj.eBayURL + '">See product</a>';
                 }
                 
                 alert("Amazon prices: " + msg);
@@ -94,6 +97,9 @@
                             && obj.priceList.FIXED_PRICE_USED.length > 0)
                         msg += "; Fixed price (used): " + obj.priceList.FIXED_PRICE_USED[0].price 
                             + " as of " + obj.priceList.FIXED_PRICE_USED[0].date;
+                            
+                    if (obj.eBayURL)
+                    	msg += '  <a href="' + obj.eBayURL + '">See product</a>';
                 }
                 
                 alert("eBay prices: " + msg);
