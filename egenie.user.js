@@ -11,7 +11,7 @@
 // @grant       GM_xmlhttpRequest
 // @require		https://raw.github.com/vaustymenko/eGenie/master/common/js/genie.js
 // @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/dailydeals/js/default.js
-// require     https://raw.github.com/vaustymenko/eGenie/master/plugins/accessories/js/accessories.js
+// @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/accessories/js/accessories.js
 // @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/competitor-prices/js/competitor-prices.js
 // @require		https://raw.github.com/vaustymenko/eGenie/master/plugins/mystuff/js/default.js
 // @resource    dailyDealsCSS https://raw.github.com/vaustymenko/eGenie/master/plugins/dailydeals/css/default.css
