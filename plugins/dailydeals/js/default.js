@@ -93,13 +93,13 @@
     plugin.sites = [/ebay\.com\/itm\//i,/ebay\.com\/sch\/i\.html/i];
     plugin.menuTitle = "Dailydeals";
     plugin.description = "dealy deals plugin";
-    plugin.callback = function() {
+    plugin.init = function() {
         
     }
-    plugin.init = function(){
+    plugin.callback = function(){
 		$.eGenie.dailydeals({
 			callback: function($data){
-				$(".eGenie-overlay").append($data);
+				$(".eGenie-overlay").html($data);
 			}	
 		});
 		//console.log($cntr);

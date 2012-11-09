@@ -83,3 +83,114 @@ var EGeniePlugin = {
         log("Registered " + this.menuTitle + " plugin");
     }
 };
+
+
+(function($){	
+	if(!$.eGenie ) $.eGenie = {};
+	$.eGenie.viewBuilder = function(){
+		
+		var core = {
+			init: function(){},
+			
+			buildItemList: function(title, items){
+				var $title = this.getTitle(title),
+					$itemsList = this.getItemsList(items),
+					$cntr = $("<div class='genie-item-list-wrapper'/>");
+					
+				$cntr.append($title)
+					.append($itemsList);
+					
+				return $cntr;	
+			},
+			
+			getTitle: function(title){
+				return $("<h2 class='genie-item-list-title' />").text(title);
+			},
+			
+			getItemsList: function(items){
+				var $items = $("<div class='genie-item-list' />");
+				for(var i=0; i < items.length; i++ ){
+					$items.append(this.getItem(items[i]));
+					if(items[i].hasHr){
+						$items.append("<hr/>");
+					}
+				}
+				return $items;
+			},
+			
+			getItem: function(item){
+				var $item,
+					itemValue,
+					$itemWrapper = $("<div class='genie-item-wrapper' />"),
+					$a,
+					$img;
+				
+				for(var i=0; i < item.values.length; i++){
+					itemValue = item.values[i];
+				
+					switch(itemValue.type){
+						case "img":
+
+							$img = $("<img class='genie-item-image' src='"+itemValue.value+"'>");
+							if(itemValue.hasLink){
+								$a = $("<a class='genie-item-wrapper-image-holder'/>").attr("href", itemValue.linkUrl || "javascript:void(0)");
+								$a.append($img);
+								$itemWrapper.append($a);
+							}else{
+								$itemWrapper.append($img);
+							}
+							break;
+						case "titleLink":
+							var title = ( itemValue.value.length > 40)? itemValue.value.slice(0,40) + "..." : itemValue.value;
+							$itemWrapper.append($("<a class='genie-item-link' />").attr("href", itemValue.linkUrl || "javascript:void(0)").text(title));
+							break;	
+						case "html":
+							$itemWrapper.append(itemValue.value);
+							break;
+					}	
+					
+				}
+				
+				
+				return $itemWrapper;
+				
+			}
+		};
+		
+		
+		return({
+			buildItemList: function(title, items){
+				return core.buildItemList(title, items);
+			}
+		});
+	}	
+		
+})(jQuery);
+
+/*
+var items= [{
+	values: [{
+		type: "img",
+		value: "http://i.ebayimg.com/00/$(KGrHqR,!jgE5)db1gtTBOmNLBOggw~~_35.JPG?set_id=89040003C1",
+		hasLink: true,
+		linkUrl: false
+	},{
+		type: "titleLink",
+		value: "Amazon Kindle Fire 8GB, Wi-Fi, 7in - Black",
+		linkUrl: false
+	},{
+		type: "html",
+		value: "<h3>assd</h3>"
+	}],
+	hasHr: true
+}];
+
+
+
+$(document).ready(function(){
+	
+	var viewBuilder = $.eGenie.viewBuilder();
+	$(".container" ).append(viewBuilder.buildItemList("title mine", items));
+
+});
+*/
