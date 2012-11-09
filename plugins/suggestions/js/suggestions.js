@@ -64,3 +64,94 @@ function getSavedASINs() {
         
     plugin.register();
 })(jQuery);
+
+/**
+ * Shows product suggestions based on recent browsing activity
+ * 
+ * @param {type} $
+ * @returns {undefined}
+ */
+(function($){
+    var plugin = $.extend({}, EGeniePlugin);
+    plugin.sites = [/ebay\.com/i];
+    plugin.menuTitle = "Suggestions";
+    plugin.description = "Shows product suggestions based on recent browsing activity";
+
+    plugin.init = function() {
+        
+    };   
+    
+	function buildSuggestionItems(products) {
+		var items = [];
+			
+		for(var i=0; i < products.length; i++) {
+			var itemValues = [],
+				product = products[i],
+				pURL = "http://www.ebay.com/ctg/" + product.epid;
+			
+			itemValues.push({
+				type: "img",
+				value: product.stockPhotoUrl,
+				hasLink: true,
+				linkUrl: pURL
+			});
+			
+			itemValues.push({
+				type: "titleLink",
+				value: product.title,
+				hasLink: true,
+				linkUrl: pURL
+			});
+			
+			itemValues.push({
+				type: "html",
+				value: "Price: <b>" + product.price + "</b><br/>",
+				hasLink: false,
+				linkUrl: false
+			});
+							
+			item = {
+				values: itemValues,
+				hasHr: true
+			};
+			items.push(item);
+		}
+		
+		return items;
+	}    
+    
+	function renderSuggestions(products) {
+		var items = buildSuggestionItems(products);
+	    
+	    var content = $("<div class='genie-suggestions' />"),
+        	viewBuilder = $.eGenie.viewBuilder();
+        
+        content.append(viewBuilder.buildItemList("Suggestions for you", items));
+		$(".ebay-genie-overlay-box-container").html(content);
+	}
+    
+    plugin.callback = function() {
+        var asins = getSavedASINs();
+        // do nothing if we have nothing stored
+        if (!asins || !asins.length)
+        	return;
+        	
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: "http://d-sjc-00531331.corp.ebay.com:8080/eservices/services/getEbayProductsFromASINs?asin=" + asins.join(),
+            onload: function(response) {
+                var obj = null, msg = "";
+                try {
+                    obj = JSON.parse(response.responseText);
+                } catch (e) {
+                    log("Failed to parse response: " + e.message);
+                    return;
+                }
+                
+                renderSuggestions(obj.products);                	
+            }
+        });
+    }
+    
+    plugin.register();
+})(jQuery);
