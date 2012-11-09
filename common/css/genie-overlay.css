@@ -26,6 +26,15 @@ html[xmlns] .clearfix {
  * 	</reset>
  */
 
+.ebay-genie-competitor .genie-item-wrapper > a.genie-item-link{
+	 font-size: 17px;
+    margin-bottom: 11px;
+}
+
+.ebay-genie-competitor .genie-item-list-wrapper{
+	 width: 254px;
+}
+
 .eGenie-overlay{
 	background: #fff;
     border: 1px solid #CCCCCC;
