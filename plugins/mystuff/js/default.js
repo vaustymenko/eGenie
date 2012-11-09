@@ -127,6 +127,18 @@
     };
     plugin.callback = function(){
 		
+		function addCommas(nStr){
+			  nStr += '';
+			  x = nStr.split('.');
+			  x1 = x[0];
+			  x2 = x.length > 1 ? '.' + x[1] : '';
+			  var rgx = /(\d+)(\d{3})/;
+			  while (rgx.test(x1)) {
+			    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+			  }
+			  return x1 + x2;
+  		}
+
 		$.eGenie.mystuff({
 			callback: function($data, totalPrice){
 				log("PDS RESUTL",$data,totalPrice);
@@ -148,7 +160,7 @@
 					if(totalPrice > viPrice ){
 						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE</div>"));
 					}else{
-						buyPrice = "$" + (viPrice - totalPrice);
+						buyPrice = "$" + addCommas(viPrice - totalPrice);
 						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for "+buyPrice+"</div>"));	
 					}
 				}
