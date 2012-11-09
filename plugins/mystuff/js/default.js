@@ -75,7 +75,7 @@
 					}else{
 						itemValues.push({
 							type: "html",
-							value: "<h3>$"+product.priceList.FIXED_PRICE_USED.price+"<a href='"+product.syiURL	+"'>Sell now</a></h3>"
+							value: "<h3>$"+product.priceList.FIXED_PRICE_USED.price+"<a href='"+product.syiURL	+"' target='_blank'>Sell now</a></h3>"
 						});
 						
 						itemValues.push({
