@@ -141,13 +141,13 @@
 					type: "titleLink",
 					value: "Auction (new): " + prices.priceList.AUCTION_NEW[0].price,
 					hasLink: true,
-					linkUrl: prices.amazonURL
+					linkUrl: prices.eBayURL
 				});
 				itemValues.push({
 					type: "html",
 					value: "as of : " + prices.priceList.AUCTION_NEW[0].date,
 					hasLink: true,
-					linkUrl: prices.amazonURL
+					linkUrl: prices.eBayURL
 				});
 				
 	            item = {
@@ -164,13 +164,13 @@
 					type: "titleLink",
 					value: "Auction (used): " + prices.priceList.AUCTION_USED[0].price,
 					hasLink: true,
-					linkUrl: prices.amazonURL
+					linkUrl: prices.eBayURL
 				});
 				itemValues.push({
 					type: "html",
 					value: "as of : " + prices.priceList.AUCTION_USED[0].date,
 					hasLink: true,
-					linkUrl: prices.amazonURL
+					linkUrl: prices.eBayURL
 				});
 				
 	            item = {
@@ -186,13 +186,13 @@
 					type: "titleLink",
 					value: "Fixed price (new): " + prices.priceList.FIXED_PRICE_NEW[0].price,
 					hasLink: true,
-					linkUrl: prices.amazonURL
+					linkUrl: prices.eBayURL
 				});
 				itemValues.push({
 					type: "html",
 					value: "as of : " + prices.priceList.FIXED_PRICE_NEW[0].date,
 					hasLink: true,
-					linkUrl: prices.amazonURL
+					linkUrl: prices.eBayURL
 				});
 				
 	            item = {
@@ -208,13 +208,13 @@
 					type: "titleLink",
 					value: "Fixed price (used): " + prices.priceList.FIXED_PRICE_USED[0].price,
 					hasLink: true,
-					linkUrl: prices.amazonURL
+					linkUrl: prices.eBayURL
 				});
 				itemValues.push({
 					type: "html",
 					value: "as of : " + prices.priceList.FIXED_PRICE_USED[0].date,
 					hasLink: true,
-					linkUrl: prices.amazonURL
+					linkUrl: prices.eBayURL
 				});
 				
 	            item = {
