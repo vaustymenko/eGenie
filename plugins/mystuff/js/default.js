@@ -92,7 +92,7 @@
 				}
 				
 				var viewBuilder = $.eGenie.viewBuilder();
-				$cntr.append(viewBuilder.buildItemList("My Stuff", items));
+				$cntr.append(viewBuilder.buildItemList("", items));
 				config.callback.call($.eGenie.myStuff, $cntr);
 			},
 			
