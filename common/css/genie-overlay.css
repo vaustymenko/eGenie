@@ -148,6 +148,7 @@ html[xmlns] .clearfix {
     right: 0;
     top: 50px;
     z-index: 9999;
+    box-shadow: -4px 11px 7px rgba(215, 215, 215, 0.9);
 }
 
 .ebay-genie-overlay.opened .ebay-genie-button{
