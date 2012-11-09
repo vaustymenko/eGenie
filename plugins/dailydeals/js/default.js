@@ -102,7 +102,6 @@
 				$(".eGenie-overlay").html($data);
 			}	
 		});
-		//console.log($cntr);
     }
     plugin.register();
 })(jQuery);

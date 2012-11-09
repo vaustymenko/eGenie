@@ -118,8 +118,8 @@
 (function($){
     var plugin = $.extend({}, EGeniePlugin);
     plugin.sites = [/ebay\.com/i];
-    plugin.menuTitle = "Dailydeals";
-    plugin.description = "dealy deals plugin";
+    plugin.menuTitle = "My Stuff";
+    plugin.description = "My Stuff plugin";
     plugin.init = function() {
         
     }
