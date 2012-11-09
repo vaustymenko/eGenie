@@ -85,7 +85,7 @@ var EGeniePlugin = {
         if (!$.eGenie.plugins)
             $.eGenie.plugins = [];
         $.eGenie.plugins.push(this);
-        log("Registered " + this.menuTitle + " plugin");
+        log("Registered " + (this.menuTitle || this.name) + " plugin");
     }
 };
 
