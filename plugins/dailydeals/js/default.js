@@ -91,7 +91,7 @@
 (function($){
     var plugin = $.extend({}, EGeniePlugin);
     plugin.sites = [/ebay\.com\/itm\//i,/ebay\.com\/sch\/i\.html/i];
-    plugin.menuTitle = "Dailydeals";
+    plugin.menuTitle = "Daily Deals";
     plugin.description = "dealy deals plugin";
     plugin.buttonColor = "btn-success",
     plugin.init = function() {
