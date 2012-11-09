@@ -142,10 +142,10 @@
 					
 					$viPrice.css("text-decoration","line-through");
 					if(totalPrice > viPrice ){
-						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE</div"));
+						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE</div>"));
 					}else{
 						buyPrice = "$" + (totalPrice - viPrice);
-						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for "+buyPrice+"</div"));	
+						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for "+buyPrice+"</div>"));	
 					}
 				}
 				$(".ebay-genie-overlay-box-container").html($data);
