@@ -144,7 +144,7 @@
 					if(totalPrice > viPrice ){
 						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE</div>"));
 					}else{
-						buyPrice = "$" + (totalPrice - viPrice);
+						buyPrice = "$" + (viPrice - totalPrice);
 						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for "+buyPrice+"</div>"));	
 					}
 				}
