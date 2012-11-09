@@ -69,7 +69,7 @@
 					if(!product.priceList){
 						itemValues.push({
 							type: "html",
-							value: "<h3><a href='javascript:void(0)'>Sell now</a> <a href='"+product.syiURL	+"' target='_blank'>Instant sale</a></h3>"
+							value: "<h3><a href='"+product.syiURL+"'>Sell now</a> <a href='http://instantsale.ebay.com/' target='_blank'>Instant sale</a></h3>"
 						});
 
 					}else{
