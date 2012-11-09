@@ -131,7 +131,7 @@
 			callback: function($data, totalPrice){
 				log("PDS RESUTL",$data,totalPrice);
 				var $viPrice = $("#prcIsum[itemprop=price]"),
-					text = $viPrice.text(),
+					text = $viPrice.text().replace(",",""),
 					viPrice,
 					buyPrice;
 					
