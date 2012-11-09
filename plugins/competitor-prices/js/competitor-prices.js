@@ -12,6 +12,84 @@
     plugin.init = function() {
         //alert(this.menuTitle + " initialized");
     };
+    
+    function buildAmazonPriceItems(prices) {
+		var items = [];
+		
+        if (prices.priceList) {
+            if (prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW 
+                    && prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW.length > 0) {
+        		var itemValues = [];
+        		itemValues.push({
+					type: "titleLink",
+					value: "New: " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW[0].price,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				itemValues.push({
+					type: "html",
+					value: "as of : " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW[0].date,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				
+	            item = {
+					values: itemValues,
+					hasHr: false
+				};
+				items.push(item);                    	
+            }
+                
+            if (prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED
+                    && prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED.length > 0) {
+                var itemValues = [];
+        		itemValues.push({
+					type: "titleLink",
+					value: "Refurbished: " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED[0].price,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				itemValues.push({
+					type: "html",
+					value: "as of : " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED[0].date,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				
+	            item = {
+					values: itemValues,
+					hasHr: false
+				};
+				items.push(item); 
+            }
+            if (prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED
+                    && prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED.length > 0) {
+                var itemValues = [];
+        		itemValues.push({
+					type: "titleLink",
+					value: "Used: " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].price,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				itemValues.push({
+					type: "html",
+					value: "as of : " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].date,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				
+	            item = {
+					values: itemValues,
+					hasHr: false
+				};
+				items.push(item); 
+            }
+        }
+		
+		return items;
+	}
+
+    
     plugin.callback = function() {
         var itemId = getItemIdFromURL(window.location.href);
         GM_xmlhttpRequest({
@@ -26,25 +104,10 @@
                     return;
                 }
                 
-                if (obj.priceList) {
-                    if (obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW 
-                            && obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW.length > 0)
-                        msg += "New: " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW[0].price 
-                            + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW[0].date;
-                    if (obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED
-                            && obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED.length > 0)
-                        msg += "; Refurbished: " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED[0].price 
-                            + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED[0].date;
-                    if (obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED
-                            && obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED.length > 0)
-                        msg += "; Used: " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].price 
-                            + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].date;
-                            
-                    if (obj.amazonURL)
-                    	msg += '  <a href="' + obj.amazonURL + '">See product</a>';
-                }
-                
-                alert("Amazon prices: " + msg);
+				var items = buildAmazonPriceItems(obj),
+					viewBuilder = $.eGenie.viewBuilder(),
+                	content = viewBuilder.buildItemList("Amazon prices", items);
+                $(".ebay-genie-overlay-box-container").html(content);
             }
         });
     }
@@ -66,6 +129,105 @@
     plugin.init = function() {
         //alert(this.menuTitle + " initialized");
     };
+    
+    function buildEbayPriceItems(prices) {
+		var items = [];
+		
+        if (prices.priceList) {
+            if (prices.priceList.AUCTION_NEW 
+                    && prices.priceList.AUCTION_NEW.length > 0) {
+        		var itemValues = [];
+        		itemValues.push({
+					type: "titleLink",
+					value: "Auction (new): " + prices.priceList.AUCTION_NEW[0].price,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				itemValues.push({
+					type: "html",
+					value: "as of : " + prices.priceList.AUCTION_NEW[0].date,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				
+	            item = {
+					values: itemValues,
+					hasHr: false
+				};
+				items.push(item);                    	
+            }
+                
+            if (prices.priceList.AUCTION_USED
+                    && prices.priceList.AUCTION_USED.length > 0) {
+                var itemValues = [];
+        		itemValues.push({
+					type: "titleLink",
+					value: "Auction (used): " + prices.priceList.AUCTION_USED[0].price,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				itemValues.push({
+					type: "html",
+					value: "as of : " + prices.priceList.AUCTION_USED[0].date,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				
+	            item = {
+					values: itemValues,
+					hasHr: false
+				};
+				items.push(item); 
+            }
+            if (prices.priceList.FIXED_PRICE_NEW
+                    && prices.priceList.FIXED_PRICE_NEW.length > 0) {
+                var itemValues = [];
+        		itemValues.push({
+					type: "titleLink",
+					value: "Fixed price (new): " + prices.priceList.FIXED_PRICE_NEW[0].price,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				itemValues.push({
+					type: "html",
+					value: "as of : " + prices.priceList.FIXED_PRICE_NEW[0].date,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				
+	            item = {
+					values: itemValues,
+					hasHr: false
+				};
+				items.push(item); 
+            }
+            if (prices.priceList.FIXED_PRICE_USED
+                    && prices.priceList.FIXED_PRICE_USED.length > 0) {
+                var itemValues = [];
+        		itemValues.push({
+					type: "titleLink",
+					value: "Fixed price (used): " + prices.priceList.FIXED_PRICE_USED[0].price,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				itemValues.push({
+					type: "html",
+					value: "as of : " + prices.priceList.FIXED_PRICE_USED[0].date,
+					hasLink: true,
+					linkUrl: prices.amazonURL
+				});
+				
+	            item = {
+					values: itemValues,
+					hasHr: false
+				};
+				items.push(item); 
+            }
+        }
+		
+		return items;
+	}    
+    
     plugin.callback = function() {
         var asin = getASINFromURL(window.location.href);
         GM_xmlhttpRequest({
@@ -80,29 +242,10 @@
                     return;
                 }
                 
-                if (obj.priceList) {
-                    if (obj.priceList.AUCTION_NEW 
-                            && obj.priceList.AUCTION_NEW.length > 0)
-                        msg += "Auction (new): " + obj.priceList.AUCTION_NEW[0].price 
-                            + " as of " + obj.priceList.AUCTION_NEW[0].date;
-                    if (obj.priceList.AUCTION_USED
-                            && obj.priceList.AUCTION_USED.length > 0)
-                        msg += "; Auction (used): " + obj.priceList.AUCTION_USED[0].price 
-                            + " as of " + obj.priceList.AUCTION_USED[0].date;
-                    if (obj.priceList.FIXED_PRICE_NEW
-                            && obj.priceList.FIXED_PRICE_NEW.length > 0)
-                        msg += "; Fixed price (new): " + obj.priceList.FIXED_PRICE_NEW[0].price 
-                            + " as of " + obj.priceList.FIXED_PRICE_NEW[0].date;
-                    if (obj.priceList.FIXED_PRICE_USED
-                            && obj.priceList.FIXED_PRICE_USED.length > 0)
-                        msg += "; Fixed price (used): " + obj.priceList.FIXED_PRICE_USED[0].price 
-                            + " as of " + obj.priceList.FIXED_PRICE_USED[0].date;
-                            
-                    if (obj.eBayURL)
-                    	msg += '  <a href="' + obj.eBayURL + '">See product</a>';
-                }
-                
-                alert("eBay prices: " + msg);
+                var items = buildEbayPriceItems(obj),
+					viewBuilder = $.eGenie.viewBuilder(),
+                	content = viewBuilder.buildItemList("eBay prices", items);
+                $(".ebay-genie-overlay-box-container").html(content);
             }
         });
     }
