@@ -1,45 +1,66 @@
+function getBrowsedProducts() {
+	var browsedProducts = JSON.parse(localStorage.getItem('eGenie-BrowsedProducts') || '[]');
+	log("Fetched saved products: ", browsedProducts);
+	return browsedProducts;
+}
+
+function saveBrowsedProduct(p) {
+	var products = getBrowsedProducts(),
+		exists = false;
+	if (products && products.length)
+		for (var i in products)
+			if (products[i].id = p.id) {
+				exists = true;
+				break;
+			}
+			
+	if (!exists) {
+		products.push(p);
+		localStorage.setItem('eGenie-BrowsedProducts', JSON.stringify(products));
+		log("Saved browsed product: ", p);	
+	}
+}
+
+/*
+function getSavedASINs() {
+	var products = getBrowsedProducts(),
+		asins = [];
+	
+	if (products && products.length)
+		for (var i in products)
+			if (products[i].seller == "amazon")
+				asins.push(products[i].id);
+				
+	log("Fetched saved ASINs: ", asins.join());
+	return asins;
+}*/
+
+function getSavedASINs() {	
+	return ["B004J3V90Y", "B0035FZJI0", "B002MAPS6W", "B0054JJ0QW"];
+}
+
 /**
- * Shows ebay.com accessories for items on ebay.com
+ * Shows product suggestions based on recent browsing activity
  * 
  * @param {type} $
  * @returns {undefined}
  */
 (function($){
     var plugin = $.extend({}, EGeniePlugin);
-    plugin.sites = [/ebay\.com\/itm\//i];
-    plugin.menuTitle = "Suggestions";
-    plugin.description = "Shows product suggestions based on recent browsing activity";
-    
-    function getStoredASINs() {
-    	return ["B004YXMGN8", "B00746MXF8"];
-    }
-    
+    plugin.sites = [/amazon\.com\/.+\/dp\/[A-z0-9]/i];
+    plugin.description = "Saves ASINs visited by the user";
+    plugin.name = "Amazon tracker";
+		
     plugin.init = function() {
-        
+        // save asin
+        var asin = getASINFromURL(window.location.href),
+			p = {
+				seller: "amazon", 
+				id: asin, 
+				url: window.location.href
+			};
+		saveBrowsedProduct(p);
     };   
-    
-    plugin.callback = function() {
-        var asins = getStoredASINs();
-        // do nothing if we have nothing stored
-        if (!asins || !asins.length)
-        	return;
-        	
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "http://d-sjc-00531331.corp.ebay.com:8080/eservices/services/getEbayProductsFromASINs?asin=" + asins.join(),
-            onload: function(response) {
-                var obj = null, msg = "";
-                try {
-                    obj = JSON.parse(response.responseText);
-                } catch (e) {
-                    log("Failed to parse response: " + e.message);
-                    return;
-                }
-                
-                                	
-            }
-        });
-    }
-    
+        
     plugin.register();
 })(jQuery);
