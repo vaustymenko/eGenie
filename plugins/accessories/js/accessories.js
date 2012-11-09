@@ -64,7 +64,7 @@ function renderAccessories(epid, categoryId) {
             	content.append(viewBuilder.buildItemList(obj.accessories[i].accessoryCategoryName, items));
             }
            
-			$(".eGenie-overlay").html(content);
+			$(".ebay-genie-overlay-box-container").html(content);
         }
     });
 }
