@@ -22,7 +22,7 @@
         		var itemValues = [];
         		itemValues.push({
 					type: "titleLink",
-					value: "New: " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW[0].price,
+					value: "New: $" + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_NEW[0].price,
 					hasLink: true,
 					linkUrl: prices.amazonURL
 				});
@@ -45,7 +45,7 @@
                 var itemValues = [];
         		itemValues.push({
 					type: "titleLink",
-					value: "Refurbished: " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED[0].price,
+					value: "Refurbished: $" + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_REFURBISHED[0].price,
 					hasLink: true,
 					linkUrl: prices.amazonURL
 				});
