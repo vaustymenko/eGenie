@@ -60,7 +60,9 @@ html[xmlns] .clearfix {
 }
 
 .genie-item-wrapper > a.genie-item-wrapper-image-holder{
-	border: 1px solid #ccc;
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 9px 9px 9px 9px;
     display: block;
     height: 152px;
     overflow: hidden;
@@ -68,12 +70,14 @@ html[xmlns] .clearfix {
 }
 
 .genie-item-wrapper > a.genie-item-wrapper-image-holder img{
-	display: inline-block;
-	margin-left: 7px;
+	 display: block;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
+    max-height: 140px;
+    max-width: 140px;
     text-align: center;
     vertical-align: middle;
-    width: 140px;
  }
  
 .genie-item-wrapper > a.genie-item-link{
