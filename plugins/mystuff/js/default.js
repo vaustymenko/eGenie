@@ -127,6 +127,7 @@
 		
 		$.eGenie.mystuff({
 			callback: function($data){
+				log("PDS RESUTL",$data);
 				$(".ebay-genie-overlay-box-container").html($data);
 			}	
 		});
