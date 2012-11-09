@@ -41,7 +41,7 @@
                             + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].date;
                 }
                 
-                //alert("Amazon prices: " + msg);
+                alert("Amazon prices: " + msg);
             }
         });
     }
@@ -96,7 +96,7 @@
                             + " as of " + obj.priceList.FIXED_PRICE_USED[0].date;
                 }
                 
-                //alert("eBay prices: " + msg);
+                alert("eBay prices: " + msg);
             }
         });
     }
