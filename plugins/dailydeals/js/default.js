@@ -48,7 +48,7 @@
 					$html,
 					newTitle;
 					
-				
+				log("dailydeals images:", dailyDeals);
 				var $cntr = $("<div class='genie-deals' />");
 				if(dailyDeals){
 				
