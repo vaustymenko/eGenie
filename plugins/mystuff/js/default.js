@@ -135,12 +135,16 @@
 					viPrice,
 					buyPrice;
 					
+					
 				//show the price bubble in VI
 				if(text){
 					totalPrice = parseFloat(totalPrice);
 					viPrice = parseFloat(text.match(/\d+/)[0]);
 					
 					$viPrice.css("text-decoration","line-through");
+					log("total Price:", totalPrice);
+					log("buy Price:", buyPrice);
+					
 					if(totalPrice > viPrice ){
 						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE</div>"));
 					}else{
