@@ -186,13 +186,10 @@ html[xmlns] .clearfix {
 	  background: none repeat scroll 0 0 #999999;
 	    border-top: medium none #999999;
 	    clear: both;
-	    height: 3px;
+	    height: 2px;
 	    margin-top: 22px;
 	    padding: 0;
-	}
-
-
-
+}
 
 .ebay-genie-overlay-plugins{
 	margin: 15px;
