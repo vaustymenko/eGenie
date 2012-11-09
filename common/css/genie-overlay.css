@@ -67,6 +67,7 @@ html[xmlns] .clearfix {
     height: 152px;
     overflow: hidden;
     width: 152px;
+   	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.42);
 }
 
 .genie-item-wrapper > a.genie-item-wrapper-image-holder img{
