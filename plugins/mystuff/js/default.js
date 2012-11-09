@@ -127,7 +127,7 @@
 		
 		$.eGenie.mystuff({
 			callback: function($data){
-				$(".eGenie-overlay").html($data);
+				$(".ebay-genie-overlay-box-container").html($data);
 			}	
 		});
 		

@@ -206,3 +206,24 @@ html[xmlns] .clearfix {
 /**
  * </ Genie Overlay >
  */
+
+/*
+var $ebayGenieOverlay = $("<div class='ebay-genie-overlay opened' />"),
+				$ebayGenieOverlayMainBtn = $("<button class='ebay-genie-button' />"),
+				$ebayGenieOverlayBox = $("<div class='ebay-genie-overlay-box'/>"),
+				$ebayGenieOverlayPlugins = $("<div class='ebay-genie-overlay-plugins' />"),
+				$ebayGenieOverlayContainer = $("<div class='ebay-genie-overlay-box-container' />");
+				
+				
+			$ebayGenieOverlayBox
+				.append($("<h3 />").text("Personal Shopping Assistant Plugins"))
+				.append($ebayGenieOverlayPlugins)
+				.append("<hr />")
+				.append($ebayGenieOverlayContainer);
+				
+			$ebayGenieOverlay
+				.append($ebayGenieOverlayMainBtn)
+				.append($ebayGenieOverlayBox);
+				
+				*/
+				

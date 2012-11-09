@@ -11,7 +11,7 @@
 // @grant       GM_xmlhttpRequest
 // @require		https://raw.github.com/vaustymenko/eGenie/master/common/js/genie.js
 // @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/dailydeals/js/default.js
-// @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/accessories/js/accessories.js
+// require     https://raw.github.com/vaustymenko/eGenie/master/plugins/accessories/js/accessories.js
 // @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/competitor-prices/js/competitor-prices.js
 // @require		https://raw.github.com/vaustymenko/eGenie/master/plugins/mystuff/js/default.js
 // @resource    dailyDealsCSS https://raw.github.com/vaustymenko/eGenie/master/plugins/dailydeals/css/default.css
@@ -99,7 +99,29 @@ localStorage.setItem('state', JSON.stringify(state) );
             log("Rendering main menu");
             menu.menu();
             
-            var $genieOverlay =  $("<div />",{class: "eGenie-overlay"}).appendTo(window.document.body);
+            
+            
+            var $ebayGenieOverlay = $("<div class='ebay-genie-overlay opened' />"),
+				$ebayGenieOverlayMainBtn = $("<button class='ebay-genie-button' />"),
+				$ebayGenieOverlayBox = $("<div class='ebay-genie-overlay-box'/>"),
+				$ebayGenieOverlayPlugins = $("<div class='ebay-genie-overlay-plugins' />"),
+				$ebayGenieOverlayContainer = $("<div class='ebay-genie-overlay-box-container' />");
+				
+				
+			$ebayGenieOverlayBox
+				.append($("<h3 />").text("Personal Shopping Assistant Plugins"))
+				.append($ebayGenieOverlayPlugins)
+				.append("<hr />")
+				.append($ebayGenieOverlayContainer);
+				
+			$ebayGenieOverlay
+				.append($ebayGenieOverlayMainBtn)
+				.append($ebayGenieOverlayBox)
+				.appendTo(window.document.body);
+				
+			
+            
+           // var $genieOverlay =  $("<div />",{class: "eGenie-overlay"}).appendTo(window.document.body);
         },
 
         /**
@@ -124,8 +146,6 @@ localStorage.setItem('state', JSON.stringify(state) );
             
             var genieOverlayCSS = GM_getResourceText("genieOverlayCSS");
             GM_addStyle(genieOverlayCSS);
-            
-            
             
             
 
