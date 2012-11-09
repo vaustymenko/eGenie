@@ -33,7 +33,8 @@
 					items = [],
 					item,
 					itemValues,
-					image;
+					image,
+					totalPrice = 0;
 					
 				if(data.lastProductsPurchased.length || data.lastItemsPurchased.length){
 					
@@ -77,6 +78,7 @@
 							type: "html",
 							value: "<h3>$"+product.priceList.FIXED_PRICE_USED.price+"<a href='"+product.syiURL	+"' target='_blank'>Sell now</a></h3>"
 						});
+						totalPrice += product.priceList.FIXED_PRICE_USED.price;
 						
 						itemValues.push({
 							type: "html",
@@ -93,7 +95,7 @@
 				
 				var viewBuilder = $.eGenie.viewBuilder();
 				$cntr.append(viewBuilder.buildItemList("", items));
-				config.callback.call($.eGenie.myStuff, $cntr);
+				config.callback.call($.eGenie.myStuff, $cntr, totalPrice);
 			},
 			
 			error: function(){
@@ -126,11 +128,31 @@
     plugin.callback = function(){
 		
 		$.eGenie.mystuff({
-			callback: function($data){
-				log("PDS RESUTL",$data);
+			callback: function($data, totalPrice){
+				log("PDS RESUTL",$data,totalPrice);
+				var $viPrice = $("#prcIsum[itemprop=price]"),
+					text = $viPrice.text(),
+					viPrice,
+					buyPrice;
+					
+				//show the price bubble in VI
+				if(text){
+					totalPrice = parseFloat(totalPrice);
+					viPrice = parseFloat(text.match(/\d+/)[0]);
+					
+					$viPrice.css("text-decoration","line-through");
+					if(totalPrice > viPrice ){
+						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE</div"));
+					}else{
+						buyPrice = "$" + (totalPrice - viPrice);
+						$viPrice.parents(".u-cb").after($("<div style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for "+buyPrice+"</div"));	
+					}
+				}
 				$(".ebay-genie-overlay-box-container").html($data);
 			}	
 		});
+		
+		
 		
 	}
     plugin.register();
