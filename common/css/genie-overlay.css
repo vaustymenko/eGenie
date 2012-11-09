@@ -174,7 +174,7 @@ html[xmlns] .clearfix {
 	display: none;
 }
 
-.ebay-genie-overlay-box h3{
+.ebay-genie-overlay-box > h3{
 	color: #666666;
     font: 15px arial;
     text-align: center;
