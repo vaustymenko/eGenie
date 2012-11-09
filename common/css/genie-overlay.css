@@ -93,7 +93,7 @@ html[xmlns] .clearfix {
 .genie-item-wrapper > a.genie-item-link{
 	color: #0654BA;
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 13px;
     text-decoration: none;
  }
@@ -176,7 +176,7 @@ html[xmlns] .clearfix {
 
 
 .ebay-genie-overlay.opened .ebay-genie-overlay-box {
-    background: none repeat scroll 0 0 rgba(255, 255, 253, 0.85);
+    background: none repeat scroll 0 0 rgba(255, 255, 253, 0.94);
     border: 6px solid rgba(0, 0, 0, 0.34);
     border-radius: 7px 0 0 7px;
     min-height: 400px;
