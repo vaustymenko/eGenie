@@ -17,6 +17,20 @@ function buildAccessoryItems(accessories) {
 			hasLink: true,
 			linkUrl: accessory.optUrl
 		});
+		
+		itemValues.push({
+			type: "html",
+			value: "Price: <b>" + accessory.binPrice + "</b><br/>",
+			hasLink: false,
+			linkUrl: false
+		});
+		
+		itemValues.push({
+			type: "html",
+			value: "Shipping: <b>" + accessory.shippingMessage + "</b>",
+			hasLink: false,
+			linkUrl: false
+		});
 						
 		item = {
 			values: itemValues,
@@ -28,11 +42,11 @@ function buildAccessoryItems(accessories) {
 	return items;
 }
 
-function getAccessories(epid, categoryId) {
+function renderAccessories(epid, categoryId) {
     GM_xmlhttpRequest({
         method: "GET",
         url: "http://www.ebay.com/eservices/accessories?epid=" + epid
-            + "categoryId=" + categoryId + ""&siteId=0&fetchSize=25",
+            + "&categoryId=" + categoryId + "&siteId=0&fetchSize=25",
         onload: function(response) {
             var obj = null, msg = "";
             try {
@@ -42,13 +56,15 @@ function getAccessories(epid, categoryId) {
                 return;
             }
             
-            var $cntr = $("<div class='genie-mystuff' />"),
-            	items = buildAccessoryItems(obj.accessories),
-            	viewBuilder = $.eGenie.viewBuilder();
-			
-			$cntr.append(viewBuilder.buildItemList("Accessories", items));
-			
-			return $cntr;
+            var content = $("<div class='genie-mystuff' />");
+            
+            var viewBuilder = $.eGenie.viewBuilder();
+            for (var i in obj.accessories) {
+            	var items = buildAccessoryItems(obj.accessories[i].items);
+            	content.append(viewBuilder.buildItemList(obj.accessories[i].accessoryCategoryName, items));
+            }
+           
+			$(".eGenie-overlay").html(content);
         }
     });
 }
@@ -83,10 +99,8 @@ function getAccessories(epid, categoryId) {
                     return;
                 }
                 
-                if (obj && obj.epid) {
-                	var content = getAccessories(obj.epid, obj.category);
-                	$(".eGenie-overlay").html(content);
-                }   
+                if (obj && obj.epid)
+                	renderAccessories(obj.epid, obj.category);                	
             }
         });
     }
@@ -125,7 +139,7 @@ function getAccessories(epid, categoryId) {
                 }
                 
                 if (obj && obj.epid)
-                    getAccessories(obj.epid, obj.category);
+                	renderAccessories(obj.epid, obj.category);
             }
         });
     }
