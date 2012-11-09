@@ -178,6 +178,7 @@ html[xmlns] .clearfix {
     font: 15px arial;
     text-align: center;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 16px;
 }
 
 .ebay-genie-overlay-box hr{
