@@ -20,12 +20,14 @@
 }
 
 .genie-deal > a.genie-deal-image-holder img{
-	display: inline-block;
-	margin-left: 7px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
+    max-height: 140px;
+    max-width: 140px;
     text-align: center;
     vertical-align: middle;
-    width: 140px;
  }
  
  .genie-deal > a.genie-deal-link{
