@@ -145,13 +145,16 @@ html[xmlns] .clearfix {
 
 .ebay-genie-overlay{
     position: absolute;
-    right: 0;
     top: 50px;
     z-index: 9999;
     box-shadow: -4px 11px 7px rgba(215, 215, 215, 0.9);
 }
 
-.ebay-genie-overlay.opened .ebay-genie-button{
+.ebay-genie-overlay.opened{
+	right: 0;
+}
+
+.ebay-genie-overlay .ebay-genie-button{
 	background: url("https://raw.github.com/vaustymenko/eGenie/master/common/css/ebay-genie-opened.png") no-repeat scroll 0 0 transparent;
     border: medium none;
     cursor: pointer;
@@ -166,7 +169,7 @@ html[xmlns] .clearfix {
 
 
 
-.ebay-genie-overlay.opened .ebay-genie-overlay-box {
+.ebay-genie-overlay .ebay-genie-overlay-box {
     background: none repeat scroll 0 0 rgba(255, 255, 253, 0.85);
     border: 6px solid rgba(0, 0, 0, 0.34);
     border-radius: 7px 0 0 7px;
@@ -176,8 +179,8 @@ html[xmlns] .clearfix {
     display: block;
 }
 
-.ebay-genie-overlay .ebay-genie-overlay-box{
-	display: none;
+.ebay-genie-overlay{
+	right: -306px;
 }
 
 .ebay-genie-overlay-box > h3{
