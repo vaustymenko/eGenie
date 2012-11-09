@@ -142,6 +142,7 @@ html[xmlns] .clearfix {
     position: absolute;
     right: 0;
     top: 50px;
+    z-index: 9999;
 }
 
 .ebay-genie-overlay.opened .ebay-genie-button{
