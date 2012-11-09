@@ -52,7 +52,7 @@ var EGeniePlugin = {
     /**
     * button Color for the button
     */
-    buttonColor: "btn-primary",
+    buttonColor: "btn-info",
             
     /**
      * Plugin description which can be shown in the eGenie settings next to

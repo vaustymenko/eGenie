@@ -120,7 +120,6 @@
     plugin.sites = [/ebay\.com/i];
     plugin.menuTitle = "My Stuff";
     plugin.description = "My Stuff plugin";
-    plugin.buttonColor ="btn-warning";
     plugin.init = function() {
         
     };
