@@ -119,7 +119,7 @@
  */
 (function($){
     var plugin = $.extend({}, EGeniePlugin);
-    plugin.sites = [/ebay\.com/i];
+    plugin.sites = [/ebay\.com/i,/amazon\.com/i];
     plugin.menuTitle = "My Stuff";
     plugin.description = "My Stuff plugin";
     plugin.init = function() {
@@ -142,6 +142,7 @@
 		$.eGenie.mystuff({
 			callback: function($data, totalPrice){
 				log("PDS RESUTL",$data,totalPrice);
+				//priceLarge
 				var $viPrice = $("#prcIsum[itemprop=price]"),
 					text = $viPrice.text().replace(",",""),
 					viPrice,
@@ -163,6 +164,26 @@
 						buyPrice = "$" + addCommas(viPrice - totalPrice);
 						$viPrice.parents(".u-cb").after($("<div class='ebay-genie-vi-price' title='Sell your stuff to get this price' style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for "+buyPrice+"</div>"));	
 					}
+				}else{
+					$viPrice = $(".product .priceLarge");
+					text = $viPrice.text().replace(",","");
+					if(text){
+						totalPrice = parseFloat(totalPrice);
+						viPrice = parseFloat(text.match(/\d+/)[0]);
+						
+						$viPrice.css("text-decoration","line-through");
+						log("total Price:", totalPrice);
+						log("buy Price:", buyPrice);
+						$('.ebay-genie-vi-price').remove();
+						if(totalPrice > viPrice ){
+							$viPrice.parents(".actualPriceRow").after($("<tr class='ebay-genie-vi-price' title='Sell your stuff to get it free'><td class='priceBlockLabelPrice' id='actualPriceLabel'>Price: </td><td style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for FREE<td></tr>"));
+						}else{
+							buyPrice = "$" + addCommas(viPrice - totalPrice);
+							$viPrice.parents(".actualPriceRow").after($("<tr class='ebay-genie-vi-price' title='Sell your stuff to get this price' ><td class='priceBlockLabelPrice' id='actualPriceLabel'>Price: </td><td style='clear:both; margin-left: 80px; font-size: 13px; font-weight: bold; color: green;'>Get it for " + buyPrice + "<td></tr>"));	
+						}
+					}
+
+					
 				}
 				$(".ebay-genie-overlay-box-container").html($data);
 			}	
