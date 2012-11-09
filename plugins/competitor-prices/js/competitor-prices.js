@@ -67,13 +67,13 @@
                 var itemValues = [];
         		itemValues.push({
 					type: "titleLink",
-					value: "Used: " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].price,
+					value: "Used: $" + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].price,
 					hasLink: true,
 					linkUrl: prices.amazonURL
 				});
 				itemValues.push({
 					type: "html",
-					value: "as of : " + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].date,
+					value: "as of :" + prices.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].date,
 					hasLink: true,
 					linkUrl: prices.amazonURL
 				});
@@ -107,7 +107,7 @@
 				var items = buildAmazonPriceItems(obj),
 					viewBuilder = $.eGenie.viewBuilder(),
                 	content = viewBuilder.buildItemList("Amazon prices", items);
-                $(".ebay-genie-overlay-box-container").html(content);
+                $(".ebay-genie-overlay-box-container").html($("<div class='ebay-genie-competitor' />").html(content));
             }
         });
     }
