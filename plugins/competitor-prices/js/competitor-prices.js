@@ -41,7 +41,7 @@
                             + " as of " + obj.priceList.CMPTR_PRICE_AMAZON_FIXED_PRICE_USED[0].date;
                             
                     if (obj.amazonURL)
-                    	msg += '  <a href="' + obj.eBayURL + '">See product</a>';
+                    	msg += '  <a href="' + obj.amazonURL + '">See product</a>';
                 }
                 
                 alert("Amazon prices: " + msg);
