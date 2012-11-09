@@ -48,6 +48,11 @@ var EGeniePlugin = {
      * Title to be displayed in the eGenie menu
      */
     menuTitle: "",
+    
+    /**
+    * button Color for the button
+    */
+    buttonColor: "btn-primary",
             
     /**
      * Plugin description which can be shown in the eGenie settings next to

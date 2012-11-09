@@ -69,18 +69,18 @@
 					if(!product.priceList){
 						itemValues.push({
 							type: "html",
-							value: "<h3><a href='javascript:void(0)'>Sell now</a> <a href='javascript:void(0)' target='_blank'>Instant sale</a></h3>"
+							value: "<h3><a href='javascript:void(0)'>Sell now</a> <a href='"+product.syiURL	+"' target='_blank'>Instant sale</a></h3>"
 						});
 
 					}else{
 						itemValues.push({
 							type: "html",
-							value: "<h3>$"+product.priceList.FIXED_PRICE_USED.price+"<a href='javascript:void(0)'>Sell now</a></h3>"
+							value: "<h3>$"+product.priceList.FIXED_PRICE_USED.price+"<a href='"+product.syiURL	+"'>Sell now</a></h3>"
 						});
 						
 						itemValues.push({
 							type: "html",
-							value: "<h3>$"+product.priceList.INSTANT_SALE_USED.price+"<a href='javascript:void(0)' target='_blank'>Instant sale</a></h3>"
+							value: "<h3>$"+product.priceList.INSTANT_SALE_USED.price+"<a href='http://instantsale.ebay.com/' target='_blank'>Instant sale</a></h3>"
 						});
 					}
 					
@@ -120,14 +120,16 @@
     plugin.sites = [/ebay\.com/i];
     plugin.menuTitle = "My Stuff";
     plugin.description = "My Stuff plugin";
+    plugin.buttonColor ="btn-warning";
     plugin.init = function() {
         
-    }
+    };
     plugin.callback = function(){
 		
 		$.eGenie.mystuff({
 			callback: function($data){
-				$(".eGenie-overlay").html($data);
+				log("PDS RESUTL",$data);
+				$(".ebay-genie-overlay-box-container").html($data);
 			}	
 		});
 		

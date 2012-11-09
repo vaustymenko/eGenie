@@ -1,3 +1,31 @@
+/**
+ * 	<reset>
+ */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+/**
+ * 	</reset>
+ */
+
 .eGenie-overlay{
 	background: #fff;
     border: 1px solid #CCCCCC;
@@ -88,3 +116,96 @@
     margin: 21px 0;
     padding: 0;
  }
+ 
+
+
+/**
+ * < Genie Overlay > 
+ */
+
+
+
+.ebay-genie-overlay .ebay-genie-button{
+	background: url("https://raw.github.com/vaustymenko/eGenie/master/common/css/ebay-genie-collapsed.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: block;
+    height: 296px;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 49px;
+}
+
+.ebay-genie-overlay{
+    position: absolute;
+    right: 0;
+    top: 50px;
+    z-index: 9999;
+}
+
+.ebay-genie-overlay.opened .ebay-genie-button{
+	background: url("https://raw.github.com/vaustymenko/eGenie/master/common/css/ebay-genie-opened.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: block;
+    min-height: 700px;
+    left: -49px;
+    padding: 0;
+    position: absolute;
+    top: 53px;
+    width: 49px;			
+}
+
+
+
+.ebay-genie-overlay.opened .ebay-genie-overlay-box {
+    background: none repeat scroll 0 0 rgba(240,240,240,0.9);
+    border: 6px solid rgba(0, 0, 0, 0.34);
+    border-radius: 7px 0 0 7px;
+    min-height: 800px;
+    width: 300px;
+    border-right: none;
+    display: block;
+}
+
+.ebay-genie-overlay .ebay-genie-overlay-box{
+	display: none;
+}
+
+.ebay-genie-overlay-box h3{
+	color: #666666;
+    font: 15px arial;
+    text-align: center;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 16px;
+}
+
+.ebay-genie-overlay-box hr{
+	  background: none repeat scroll 0 0 #999999;
+	    border-top: medium none #999999;
+	    clear: both;
+	    height: 3px;
+	    margin-top: 22px;
+	    padding: 0;
+	}
+
+
+
+
+.ebay-genie-overlay-plugins{
+	margin: 15px;
+	
+}
+
+.ebay-genie-overlay-plugins button{
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 10px;
+}
+
+/**
+ * </ Genie Overlay >
+ */
+				

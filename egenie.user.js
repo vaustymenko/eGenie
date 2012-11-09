@@ -11,11 +11,12 @@
 // @grant       GM_xmlhttpRequest
 // @require		https://raw.github.com/vaustymenko/eGenie/master/common/js/genie.js
 // @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/dailydeals/js/default.js
-// @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/accessories/js/accessories.js
+// require     https://raw.github.com/vaustymenko/eGenie/master/plugins/accessories/js/accessories.js
 // @require     https://raw.github.com/vaustymenko/eGenie/master/plugins/competitor-prices/js/competitor-prices.js
 // @require		https://raw.github.com/vaustymenko/eGenie/master/plugins/mystuff/js/default.js
 // @resource    dailyDealsCSS https://raw.github.com/vaustymenko/eGenie/master/plugins/dailydeals/css/default.css
 // @resource 	genieOverlayCSS  https://raw.github.com/vaustymenko/eGenie/master/common/css/genie-overlay.css
+// @resource 	genieButtonsCSS  https://raw.github.com/vaustymenko/eGenie/master/common/css/buttons.css
 // ==/UserScript==
 
 /*
@@ -70,36 +71,45 @@ localStorage.setItem('state', JSON.stringify(state) );
          * @returns {undefined}
          */
         createMenu: function(plugins) {
-            log("Assembling main menu");
-            
-            var mId = 'eGenieMenu',
-                mWidth = 150,
-                mTop = 20,
-                mLeft = window.outerWidth - mWidth - 100;
-
-            var menu = $('<ul/>', {id: mId})
-                .css({
-                    position: 'absolute',
-                    left: mLeft + 'px', 
-                    top: mTop + 'px',
-                    width: mWidth + 'px',
-                    'z-index': 9999
-                })
-                .appendTo(window.document.body);
-        
-            for (var i in plugins) {
+           
+           
+            var $ebayGenieOverlay = $("<div class='ebay-genie-overlay opened' />"),
+				$ebayGenieOverlayMainBtn = $("<button class='ebay-genie-button' />"),
+				$ebayGenieOverlayBox = $("<div class='ebay-genie-overlay-box'/>"),
+				$ebayGenieOverlayPlugins = $("<div class='ebay-genie-overlay-plugins' />"),
+				$ebayGenieOverlayContainer = $("<div class='ebay-genie-overlay-box-container' />");
+				
+				
+			$ebayGenieOverlayBox
+				.append($("<h3 />").text("Personal Shopping Assistant Plugins"))
+				.append($ebayGenieOverlayPlugins)
+				.append("<hr />")
+				.append($ebayGenieOverlayContainer);
+				
+			$ebayGenieOverlay
+				.append($ebayGenieOverlayMainBtn)
+				.append($ebayGenieOverlayBox)
+				.appendTo(window.document.body);
+				
+				
+           for (var i in plugins) {
                 log("Initializing " + plugins[i].menuTitle + " plugin");
-                var menuLink = $('<a/>')
-                        .html('<span class="ui-icon ui-icon-disk"></span>' + plugins[i].menuTitle)
-                        .click($.proxy(plugins[i].callback, plugins[i]));
-                menu.append($('<li/>').append(menuLink));
-                plugins[i].init.call(plugins[i]);
-            }
+                
+               $("<button type='type' class='btn "+plugins[i].buttonColor+"' />")
+               		.text( plugins[i].menuTitle)
+                	.click($.proxy(plugins[i].callback, plugins[i]))
+                	.appendTo($ebayGenieOverlayPlugins);
+                	
+                plugins[i].init.call(plugins[i]);	
+                
+           }
 
-            log("Rendering main menu");
-            menu.menu();
+           
+          // <button type="button" class="btn btn-success">Daily Deals</button>
             
-            var $genieOverlay =  $("<div />",{class: "eGenie-overlay"}).appendTo(window.document.body);
+			
+            
+           // var $genieOverlay =  $("<div />",{class: "eGenie-overlay"}).appendTo(window.document.body);
         },
 
         /**
@@ -125,7 +135,8 @@ localStorage.setItem('state', JSON.stringify(state) );
             var genieOverlayCSS = GM_getResourceText("genieOverlayCSS");
             GM_addStyle(genieOverlayCSS);
             
-            
+            var genieButtonsCSS = GM_getResourceText("genieButtonsCSS");
+            GM_addStyle(genieButtonsCSS);
             
             
 
@@ -135,5 +146,8 @@ localStorage.setItem('state', JSON.stringify(state) );
     
     $(document).ready(function(){
     	PluginManager.init();
+		$(".ebay-genie-overlay .ebay-genie-button").on("click",function(){
+			$(".ebay-genie-overlay").toggleClass("opened");
+		});
     });
 })(jQuery);
