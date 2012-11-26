@@ -36,7 +36,7 @@
 					image,
 					totalPrice = 0;
 					
-				if(data.lastProductsPurchased.length || data.lastItemsPurchased.length){
+				if(data.lastProductsPurchased && data.lastItemsPurchased.length){
 					
 					for( var i=0; i < data.lastProductsPurchased.length; i++){
 						products.push(data.lastProductsPurchased[i].product);
