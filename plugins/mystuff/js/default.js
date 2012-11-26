@@ -36,16 +36,16 @@
 					image,
 					totalPrice = 0;
 					
-				if(data.lastProductsPurchased && data.lastItemsPurchased.length){
-					
-					for( var i=0; i < data.lastProductsPurchased.length; i++){
-						products.push(data.lastProductsPurchased[i].product);
-					}
-					
-					for( var i=0; i < data.lastItemsPurchased.length; i++){
-						products.push(data.lastItemsPurchased[i].product);
-					}
-						
+				if(data.lastProductsPurchased && data.lastProductsPurchased.length){
+                                    for( var i=0; i < data.lastProductsPurchased.length; i++){
+                                            products.push(data.lastProductsPurchased[i].product);
+                                    }						
+				}
+                                
+                                if(data.lastItemsPurchased && data.lastItemsPurchased.length){
+                                    for( var i=0; i < data.lastItemsPurchased.length; i++){
+                                            products.push(data.lastItemsPurchased[i].product);
+                                    }						
 				}
 					
 				
