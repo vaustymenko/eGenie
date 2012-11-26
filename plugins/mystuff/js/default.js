@@ -74,16 +74,21 @@
 						});
 
 					}else{
-						itemValues.push({
-							type: "html",
-							value: "<h3>$"+product.priceList.FIXED_PRICE_USED.price+"<a href='"+product.syiURL	+"' target='_blank'>Sell now</a></h3>"
-						});
-						totalPrice += product.priceList.FIXED_PRICE_USED.price;
-						
-						itemValues.push({
-							type: "html",
-							value: "<h3>$"+product.priceList.INSTANT_SALE_USED.price+"<a href='http://instantsale.ebay.com/' target='_blank'>Instant sale</a></h3>"
-						});
+                                                var usedPrice = null;
+                                                if (product.priceList && product.priceList.FIXED_PRICE_USED && product.priceList.FIXED_PRICE_USED.price) {
+                                                    usedPrice = product.priceList.FIXED_PRICE_USED.price;
+                                                    
+                                                    itemValues.push({
+                                                        type: "html",
+                                                        value: "<h3>$"+usedPrice+"<a href='"+product.syiURL	+"' target='_blank'>Sell now</a></h3>"
+                                                    });
+                                                    totalPrice += usedPrice;
+
+                                                    itemValues.push({
+                                                        type: "html",
+                                                        value: "<h3>$"+usedPrice+"<a href='http://instantsale.ebay.com/' target='_blank'>Instant sale</a></h3>"
+                                                    });                                        
+                                                }
 					}
 					
 					item = {
